@@ -28,72 +28,88 @@ public class AplikasiCekNomor extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        inputLabel = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        angkaLabel = new javax.swing.JLabel();
+        inputTextField = new javax.swing.JTextField();
+        hitungButton = new javax.swing.JButton();
+        hasilLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Aplikasi Pengecek Ganjil Genap", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri Light", 1, 14))); // NOI18N
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setText("jLabel2");
+        angkaLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        angkaLabel.setText("Masukkan Angka");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 9);
-        jPanel1.add(jLabel2, gridBagConstraints);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(11, 10, 0, 11);
+        jPanel1.add(angkaLabel, gridBagConstraints);
 
-        inputLabel.addActionListener(new java.awt.event.ActionListener() {
+        inputTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputLabelActionPerformed(evt);
+                inputTextFieldActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel1.add(inputLabel, gridBagConstraints);
+        gridBagConstraints.ipadx = 83;
+        gridBagConstraints.insets = new java.awt.Insets(11, 3, 0, 10);
+        jPanel1.add(inputTextField, gridBagConstraints);
 
-        jButton1.setText("jButton1");
+        hitungButton.setText("Ganjil / Genap?");
+        hitungButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hitungButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 9);
-        jPanel1.add(jButton1, gridBagConstraints);
-
-        jLabel1.setText("jLabel1");
+        gridBagConstraints.insets = new java.awt.Insets(7, 5, 7, 9);
+        jPanel1.add(hitungButton, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel1.add(jLabel1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(7, 0, 7, 6);
+        jPanel1.add(hasilLabel, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(162, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(122, 122, 122))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(147, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void inputLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputLabelActionPerformed
+    private void inputTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_inputLabelActionPerformed
+    }//GEN-LAST:event_inputTextFieldActionPerformed
+
+    private void hitungButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hitungButtonActionPerformed
+        // TODO add your handling code here:
+    String inputText = inputTextField.getText();
+    try {
+        int number = Integer.parseInt(inputText);
+        if (number % 2 == 0) {
+            hasilLabel.setText(inputText + " adalah Bilangan Genap");
+        } else {
+            hasilLabel.setText(inputText + " adalah Bilangan Ganjil");
+        }
+    } catch (NumberFormatException e) {
+        hasilLabel.setText("Input tidak valid");
+    }
+    }//GEN-LAST:event_hitungButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,10 +147,10 @@ public class AplikasiCekNomor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField inputLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel angkaLabel;
+    private javax.swing.JLabel hasilLabel;
+    private javax.swing.JButton hitungButton;
+    private javax.swing.JTextField inputTextField;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
