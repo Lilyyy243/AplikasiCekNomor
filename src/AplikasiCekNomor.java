@@ -59,6 +59,15 @@ public class AplikasiCekNomor extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(11, 3, 0, 10);
         jPanel1.add(inputTextField, gridBagConstraints);
 
+        inputTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                if (!Character.isDigit(c) && c != '\b') {
+                    evt.consume();
+                }
+            }
+        });
+
         hitungButton.setText("Ganjil / Genap?");
         hitungButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,6 +103,14 @@ public class AplikasiCekNomor extends javax.swing.JFrame {
 
     private void inputTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTextFieldActionPerformed
         // TODO add your handling code here:
+    inputTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyTyped(java.awt.event.KeyEvent evt) {
+            char c = evt.getKeyChar();
+            if (!Character.isDigit(c) && c != '\b') {
+                evt.consume();
+            }
+        }
+    });
     }//GEN-LAST:event_inputTextFieldActionPerformed
 
     private void hitungButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hitungButtonActionPerformed
