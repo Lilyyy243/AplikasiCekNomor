@@ -10,11 +10,29 @@
  */
 public class AplikasiCekNomor extends javax.swing.JFrame {
 
+    private boolean isPrime(int number) {
+        if (number <= 1) return false;
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) return false;
+        }
+        return true;
+    }
+
     /**
      * Creates new form AplikasiCekNomor
      */
     public AplikasiCekNomor() {
         initComponents();
+        
+        // Add FocusListener to clear text field
+        inputTextField.addFocusListener(new java.awt.event.FocusListener() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputTextField.setText("");
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                // Do nothing
+            }
+        });
     }
 
     /**
@@ -118,13 +136,22 @@ public class AplikasiCekNomor extends javax.swing.JFrame {
     String inputText = inputTextField.getText();
     try {
         int number = Integer.parseInt(inputText);
-        if (number % 2 == 0) {
-            hasilLabel.setText(inputText + " adalah Bilangan Genap");
-        } else {
-            hasilLabel.setText(inputText + " adalah Bilangan Ganjil");
-        }
+        String result = inputText + " adalah Bilangan ";
+        
+        // Check if even or odd
+        result += (number % 2 == 0) ? "Genap" : "Ganjil";
+        
+        // Check if prime
+        result += " dan " + (isPrime(number) ? "merupakan" : "bukan") + " bilangan prima";
+        
+        // Show result using JOptionPane
+        javax.swing.JOptionPane.showMessageDialog(this, result, "Hasil", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        
     } catch (NumberFormatException e) {
-        hasilLabel.setText("Input tidak valid");
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Input tidak valid! Masukkan angka yang benar.", 
+            "Error", 
+            javax.swing.JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_hitungButtonActionPerformed
 
