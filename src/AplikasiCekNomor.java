@@ -10,6 +10,11 @@
  */
 public class AplikasiCekNomor extends javax.swing.JFrame {
 
+    /**
+     * Method untuk mengecek apakah sebuah angka adalah bilangan prima
+     * @param number angka yang akan dicek
+     * @return true jika bilangan prima, false jika bukan
+     */
     private boolean isPrime(int number) {
         if (number <= 1) return false;
         for (int i = 2; i <= Math.sqrt(number); i++) {
@@ -19,18 +24,19 @@ public class AplikasiCekNomor extends javax.swing.JFrame {
     }
 
     /**
-     * Creates new form AplikasiCekNomor
+     * Konstruktor aplikasi - Inisialisasi komponen dan menambahkan listener
      */
     public AplikasiCekNomor() {
         initComponents();
         
-        // Add FocusListener to clear text field
+        // Menambahkan FocusListener untuk membersihkan text field saat diklik
         inputTextField.addFocusListener(new java.awt.event.FocusListener() {
+            // Membersihkan text field saat mendapat fokus
             public void focusGained(java.awt.event.FocusEvent evt) {
                 inputTextField.setText("");
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                // Do nothing
+                // Tidak ada aksi saat fokus hilang
             }
         });
     }
@@ -120,34 +126,40 @@ public class AplikasiCekNomor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void inputTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTextFieldActionPerformed
-        // TODO add your handling code here:
-    inputTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-        public void keyTyped(java.awt.event.KeyEvent evt) {
-            char c = evt.getKeyChar();
-            if (!Character.isDigit(c) && c != '\b') {
-                evt.consume();
+        // Membatasi input hanya untuk angka dan tombol backspace
+        inputTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                if (!Character.isDigit(c) && c != '\b') {
+                    evt.consume(); // Menolak karakter selain angka
+                }
             }
-        }
-    });
+        });
     }//GEN-LAST:event_inputTextFieldActionPerformed
 
+    /**
+     * Method untuk menangani aksi ketika tombol hitung ditekan
+     * Mengecek apakah input adalah ganjil/genap dan bilangan prima
+     */
     private void hitungButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hitungButtonActionPerformed
         // TODO add your handling code here:
     String inputText = inputTextField.getText();
     try {
+        // Mengkonversi input string menjadi integer
         int number = Integer.parseInt(inputText);
         String result = inputText + " adalah Bilangan ";
         
-        // Check if even or odd
+        // Pengecekan bilangan ganjil atau genap
         result += (number % 2 == 0) ? "Genap" : "Ganjil";
         
-        // Check if prime
+        // Pengecekan bilangan prima
         result += " dan " + (isPrime(number) ? "merupakan" : "bukan") + " bilangan prima";
         
-        // Show result using JOptionPane
+        // Menampilkan hasil menggunakan dialog box
         javax.swing.JOptionPane.showMessageDialog(this, result, "Hasil", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         
     } catch (NumberFormatException e) {
+        // Menampilkan pesan error jika input tidak valid
         javax.swing.JOptionPane.showMessageDialog(this, 
             "Input tidak valid! Masukkan angka yang benar.", 
             "Error", 
